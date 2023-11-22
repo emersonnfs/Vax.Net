@@ -1,0 +1,69 @@
+﻿@model List<Usuario>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuários</h1>
+
+<mensagem texto="@TempData["msg"]" class="alert alert-danger"></mensagem>
+
+<a asp-action="Cadastrar" class="btn btn-sm btn-outline-danger">Cadastrar</a>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Data de Nascimento</th>
+        <th>Gênero</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+    </tr>
+    @foreach (var usuario in Model)
+    {
+        <tr>
+            <td>@usuario.Nome</td>
+            <td>@usuario.Email</td>
+            <td>@usuario.DataNascimento.ToString("dd/MM/yyyy")</td>
+            <td>@usuario.Genero</td>
+            <td>
+                @if (usuario.Endereco != null)
+                {
+                    <text>@usuario.Endereco.Logradouro, @usuario.Endereco.Cidade, @usuario.Endereco.Estado</text>
+                }
+            </td>
+            <td>
+                @if (usuario.Telefone != null)
+                {
+                    <text>(@usuario.Telefone.Ddd) @usuario.Telefone.Numero</text>
+                }
+            </td>
+            <td>
+                <a asp-action="Editar" class="btn btn-sm btn-outline-primary" asp-route-id="@usuario.Id">Editar</a>
+                <button onclick="usuarioId.value = @usuario.Id" type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Deseja realmente apagar o usuário?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Remover">
+                    <input name="id" type="hidden" id="usuarioId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

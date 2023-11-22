@@ -1,0 +1,69 @@
+﻿@model Usuario
+
+<div class="form-group">
+    <label asp-for="Nome"></label>
+    <input asp-for="Nome" class="form-control" />
+    <span asp-validation-for="Nome" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="DataNascimento"></label>
+    <div class="input-group">
+        <input asp-for="DataNascimento" class="form-control datepicker" type="text" data-date-format="dd/mm/yy" />
+        <span class="input-group-text">
+            <i class="fa fa-calendar"></i>
+        </span>
+    </div>
+    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Genero"></label>
+    <select asp-for="Genero" class="form-control">
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
+        <option value="Outro">Outro</option>
+    </select>
+</div>
+@* Campos do Endereco *@
+<div class="form-group">
+    <label asp-for="Endereco.Estado"></label>
+    <select asp-for="Endereco.Estado" class="form-control">
+        @foreach (var estado in Enum.GetValues(typeof(EstadoEnum)))
+        {
+            <option value="@estado">@estado</option>
+        }
+    </select>
+    <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Endereco.Cidade"></label>
+    <input asp-for="Endereco.Cidade" class="form-control" />
+    <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Endereco.Logradouro"></label>
+    <input asp-for="Endereco.Logradouro" class="form-control" />
+    <span asp-validation-for="Endereco.Logradouro" class="text-danger"></span>
+</div>
+
+@* Campos do Telefone *@
+<div class="form-group">
+    <label asp-for="Telefone.Ddd"></label>
+    <input asp-for="Telefone.Ddd" class="form-control" />
+    <span asp-validation-for="Telefone.Ddd" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Telefone.Numero"></label>
+    <input asp-for="Telefone.Numero" class="form-control" />
+    <span asp-validation-for="Telefone.Numero" class="text-danger"></span>
+</div>

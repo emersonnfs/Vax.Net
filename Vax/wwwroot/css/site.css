@@ -1,0 +1,57 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.ui-datepicker {
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ui-datepicker-header {
+    background-color: #f0f0f0;
+}
+
+.ui-datepicker-title {
+    color: #333;
+}
+
+.ui-datepicker-calendar {
+    border-collapse: separate;
+}
+
+    .ui-datepicker-calendar th,
+    .ui-datepicker-calendar td {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .ui-datepicker-calendar td {
+        border-radius: 4px;
+    }
+
+    .ui-datepicker-calendar .ui-state-default {
+        background-color: #fff; /* Cor de fundo para os dias do mês */
+        color: #333; /* Cor do texto para os dias do mês */
+        border: 1px solid #ddd; /* Borda ao redor dos dias do mês */
+    }
+
+    .ui-datepicker-calendar .ui-state-highlight {
+        background-color: #428bca; /* Cor de fundo para o dia atual */
+        color: #fff; /* Cor do texto para o dia atual */
+        border: 1px solid #357ebd; /* Borda ao redor do dia atual */
+    }
