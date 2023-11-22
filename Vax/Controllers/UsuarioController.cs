@@ -17,6 +17,7 @@ namespace Vax.Controllers
             _context = context;
         }
 
+
         public IActionResult Index()
         {
             var usuarios = _context.Usuarios
