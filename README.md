@@ -152,11 +152,20 @@ Para a UsuarioController nós implementamos a classe Controller do Microsoft.Asp
   IActionResult Editar(Usuario usuario);
   IActionResult Remover(int id);
 ```
-`IActionResult Index()`
-Retornamos a lista de Usuários incluindo o Endereço e o Telefone.
+`IActionResult Index()` - Retornamos a lista de Usuários incluindo o Endereço e o Telefone.
 
-`IActionResult Cadastrar()`
-Retornamos a View de Cadastrar.
+`IActionResult Cadastrar()` - Retornamos a View de Cadastrar.
 
-`IActionResult Cadastrar(Usuario usuario)`
-Nesse método recebemos um Usuário e fazemos o cadastro de Endereço e Telefone que vão retornar o seus respectivos Id's, com isso cadastramos nos campos EnderecoId e TelefoneId esses Id's, e assim cadastramos o usuário, retornando um direcionamento para página de Index.
+`IActionResult Cadastrar(Usuario usuario)` - Nesse método recebemos um Usuário e fazemos o cadastro de Endereço e Telefone que vão retornar o seus respectivos Id's, com isso cadastramos nos campos EnderecoId e TelefoneId esses Id's, e assim cadastramos o usuário e dependendo do gênero do usuário adiconamos 47 ou 48 vacinas relacionadas ao StatusVacina, retornando um direcionamento para página de Index.
+
+`int CadastrarEndereco(Endereco endereco)` - Nesse método recebemos o Endereço que é adicionado e nos retorna o Id dele, para ser Utilizado no cadastro do Usuário.
+
+`int CadastrarTelefone(Telefone telefone)` - Nesse método recebemos o Telefone que é adicionado e nos retorna o Id dele, para ser Utilizado no cadastro do Usuário.
+
+`IActionResult Editar(int id)` - Nesse método é passado o id de determinado Usuário, e caso ele exista retornamos o Objeto Usuário incluindo o Endereço e o Telefone, que vão ser editados.
+
+`IActionResult Editar(Usuario usuario)` - Nesse método se recebe o Usuário atualizado, é feito a busca do Usuário de mesmo Id, e atualizado os campos desse Usuário pelos novos dados, e é retornado um redirecionamento para a página de Index.
+
+`IActionResult Remover(int id)` - Nesse método é recebido o id de um Usuário, caso ele exista, esse Usuário é removido do banco de dados, é emitido a mensagem de "Usuário removido!" de sucesso, e é redirecionado para página de Index;
+
+---
