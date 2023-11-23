@@ -91,6 +91,7 @@ O CategoriaVacinaViewModel existe para auxiliar na exibição do formulário de 
 ### Data
 #### Data Context
 Para a persistência em banco de dados, estamos usando o Oracle DataBase que é disponibilizado pela FIAP, para comunicar com o banco de dados utilizamos dos seguintes frameworks:
+
 `Microsoft.EntityFrameworkCore.Design`
 `Microsoft.EntityFrameworkCore.Tools`
 `Oracle.EntityFrameworkCore`
