@@ -11,6 +11,8 @@
       - [Formulário Vacina](#formulário-vacina)
     - [Data](#data)
       - [Data Context](#data-context)
+    - [Services](#services)
+      - [Inicialização de Data](#inicialização-data)
 
 ## Descrição
 
@@ -95,3 +97,17 @@ Para a persistência em banco de dados, estamos usando o Oracle DataBase que é 
 `Microsoft.EntityFrameworkCore.Design`
 `Microsoft.EntityFrameworkCore.Tools`
 `Oracle.EntityFrameworkCore`
+
+Com esses frameworks foi possível construir as Entidades no banco de dados implementando o DbContext do EntityFrameWork da Microsoft, onde sobrescrevemos a ModelBuilder do framework adequando a modelagem das tabelas a serem persistidas e passamos as tabelas a serem cadastradas que são as seguintes:
+```js
+  DbSet<Usuario> Usuarios;
+  DbSet<Vacina> Vacinas;
+  DbSet<Endereco> Enderecos;
+  DbSet<StatusVacina> StatusVacinas;
+  DbSet<Telefone> Telefones;
+```
+Dessa forma temos as tabelas a cima cadastradas no banco de dados e com o auxílio da DbContext manipuladas facilmente.
+
+---
+### Services
+#### Inicialização Data
