@@ -45,61 +45,14 @@ body {
     }
 
     .ui-datepicker-calendar .ui-state-default {
-        background-color: #fff; /* Cor de fundo para os dias do mês */
-        color: #333; /* Cor do texto para os dias do mês */
-        border: 1px solid #ddd; /* Borda ao redor dos dias do mês */
+        background-color: #fff; 
+        color: #333; 
+        border: 1px solid #ddd; 
     }
 
     .ui-datepicker-calendar .ui-state-highlight {
-        background-color: #428bca; /* Cor de fundo para o dia atual */
-        color: #fff; /* Cor do texto para o dia atual */
-        border: 1px solid #357ebd; /* Borda ao redor do dia atual */
+        background-color: #428bca; 
+        color: #fff; 
+        border: 1px solid #357ebd;
     }
 
-.custom-checkbox {
-    display: inline-block;
-    position: relative;
-    padding-left: 30px; /* ajuste conforme necessário para o tamanho desejado */
-    cursor: pointer;
-}
-
-    .custom-checkbox input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px; /* ajuste conforme necessário para o tamanho desejado */
-    width: 50px; /* ajuste conforme necessário para o tamanho desejado */
-    background-color: #eee;
-    border: 1px solid #ccc;
-}
-
-.custom-checkbox input:checked + .checkmark {
-    background-color: #428bca; /* cor quando estiver marcado */
-    border: 1px solid #357ebd; /* borda quando estiver marcado */
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.custom-checkbox input:checked + .checkmark:after {
-    display: block;
-}
-
-.custom-checkbox .checkmark:after {
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}

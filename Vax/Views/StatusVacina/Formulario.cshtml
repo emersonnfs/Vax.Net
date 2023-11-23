@@ -6,6 +6,13 @@
 
 <h1 class="mb-4">Formulário de Vacinas</h1>
 
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["msg"]
+    </div>
+}
+
 @foreach (var categoria in Model)
 {
     <div class="mb-4">
@@ -18,7 +25,6 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>Descrição</th>
                                 <th>Dose</th>
@@ -29,12 +35,11 @@
                             @foreach (FormVacina vacina in tipo.Value)
                             {
                                 <tr>
-                                    <td>@vacina.Id</td>
                                     <td>@vacina.Nome</td>
                                     <td>@vacina.Descricao</td>
                                     <td>@vacina.Dose</td>
                                     <td class="status-cell">
-                                        <input type="checkbox" class="status-checkbox" @(vacina.Status ? "checked" : "") disabled />
+                                        <input type="checkbox" name="StatusVacinas[@tipo.Key][@vacina.Id]" @(vacina.Status ? "checked" : "") />
                                     </td>
                                 </tr>
                             }
@@ -45,18 +50,61 @@
         </div>
     </div>
 }
+<div class="d-flex justify-content-between">
+    <a asp-controller="Usuario" asp-action="Index" class="btn btn-light">Voltar</a>
+    <form id="formAtualizar" method="post" action="/StatusVacina/AtualizarStatus">
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+    </form>
+</div>
+
 
 @section Scripts {
     <script>
         $(document).ready(function () {
             $('.status-cell').click(function () {
-                var checkbox = $(this).find('.status-checkbox');
-
+                var checkbox = $(this).find('input[type="checkbox"]');
                 checkbox.prop('checked', !checkbox.prop('checked'));
+            });
 
-                console.log("Novo valor do checkbox: " + checkbox.prop('checked'));
+            $('#formAtualizar').submit(function (e) {
+                e.preventDefault(); // Evita o envio padrão do formulário
+
+                var statusVacinas = {};
+
+                // Obtém os valores dos checkboxes e popula o objeto statusVacinas
+                $('.status-cell input[type="checkbox"]').each(function () {
+                    var checkbox = $(this);
+                    var status = checkbox.prop('checked');
+                    var tipoKey = checkbox.attr('name').split('[')[1].split(']')[0];
+                    var vacinaId = checkbox.attr('name').split('[')[2].split(']')[0];
+
+                    if (!statusVacinas[tipoKey]) {
+                        statusVacinas[tipoKey] = {};
+                    }
+
+                    statusVacinas[tipoKey][vacinaId] = status;
+                });
+
+                // Envia os dados via AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/StatusVacina/AtualizarStatus',
+                    data: { statusVacinas: statusVacinas },
+                    success: function () {
+                        // Atualiza a página ou executa outras ações após o sucesso
+                        console.log('Dados atualizados com sucesso!');
+
+                        // Redireciona para o Index do Usuario
+                        window.location.href = '/Usuario/Index';
+                    },
+                    error: function () {
+                        console.log('Erro ao enviar dados.');
+                    }
+                });
+
             });
         });
     </script>
 }
+
 

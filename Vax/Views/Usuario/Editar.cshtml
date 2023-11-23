@@ -10,6 +10,10 @@
 <form asp-action="Editar" method="post">
     <input type="hidden" asp-for="Id" />
     <partial name="_Form" />
-    <botao texto="Editar"></botao>
-    <a asp-action="Index" class="btn btn-light">Cancelar</a>
+    <div class="mt-4">
+        <div class="d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-light">Cancelar</a>
+            <botao texto="Editar"></botao>
+        </div>
+    </div>
 </form>

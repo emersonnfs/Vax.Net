@@ -9,6 +9,10 @@
 
 <form asp-action="Cadastrar" method="post">
     <partial name="_Form" />
-    <botao></botao>
-    <a asp-action="Index" class="btn btn-dark">Lista de Usuários</a>
+    <div class="mt-4">
+        <div class="d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-dark">Lista de Usuários</a>
+            <botao></botao>
+        </div>
+    </div>
 </form>

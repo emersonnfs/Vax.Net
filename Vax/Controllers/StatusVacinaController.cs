@@ -143,19 +143,278 @@ namespace Vax.Controllers
         }
 
         [HttpPost]
-        public IActionResult AtualizarStatus(int id, bool novoStatus)
+        public IActionResult AtualizarStatus(Dictionary<string, Dictionary<int, bool>> statusVacinas)
         {
-            var statusVacina = _context.StatusVacinas.Find(id);
+            try
+            {
+                foreach (var categoria in statusVacinas)
+                {
+                    foreach (var vacinaIdAndStatus in categoria.Value)
+                    {
+                        int vacinaId = vacinaIdAndStatus.Key;
+                        bool novoStatus = vacinaIdAndStatus.Value;
 
-            if (statusVacina == null)
+                        // Consulta o StatusVacina pelo Id da vacina
+                        var statusVacina = _context.StatusVacinas.FirstOrDefault(sv => sv.Id == vacinaId);
+
+                        if (statusVacina != null)
+                        {
+                            // Atualiza o status
+                            statusVacina.Status = novoStatus;
+                        }
+                    }
+                }
+
+                // Salva as alterações no banco de dados
+                _context.SaveChanges();
+
+                TempData["msg"] = "Formulário Atualizado com Sucesso!";
+
+                // Retorna uma resposta de sucesso
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // Captura qualquer exceção e imprime no console
+                Console.WriteLine(ex.Message);
+                return BadRequest("Erro ao atualizar status.");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Pendentes(int id)
+        {
+            var usuario = _context.Usuarios.Find(id);
+
+            if (usuario == null) { return NotFound(); }
+
+            var listaStatusVacinas = _context.StatusVacinas
+                .Where(s => s.UsuarioId == id)
+                .Include(s => s.Vacina)
+                .ToList();
+
+            if (listaStatusVacinas == null)
             {
                 return NotFound();
             }
+            List<string> listaPendentes = new List<string>();
 
-            statusVacina.Status = novoStatus;
-            _context.SaveChanges();
+            if (!PendenteBCG(listaStatusVacinas))
+            {
+                listaPendentes.Add("BCG");
+            }
+            if (!PendenteHepatiteB(listaStatusVacinas))
+            {
+                listaPendentes.Add("Hepatite B");
+            }
+            if (!PendentePentavalente(listaStatusVacinas))
+            {
+                listaPendentes.Add("Pentavalente");
+            }
+            if (!PendentePoliomielite(listaStatusVacinas))
+            {
+                listaPendentes.Add("Poliomielite");
+            }
+            if (!PendentePneumococica(listaStatusVacinas))
+            {
+                listaPendentes.Add("Pneumocócica 10V");
+            }
+            if (!PendenteRotavirus(listaStatusVacinas))
+            {
+                listaPendentes.Add("Rotavírus");
+            }
+            if (!PendenteMeningococicaC(listaStatusVacinas))
+            {
+                listaPendentes.Add("Meningocócica C");
+            }
+            if (!PendenteFebreAmarela(listaStatusVacinas))
+            {
+                listaPendentes.Add("Febre Amarela");
+            }
+            if (!PendenteTripliceViral(listaStatusVacinas))
+            {
+                listaPendentes.Add("Tríplice Viral");
+            }
+            if (!PendenteHepatiteA(listaStatusVacinas))
+            {
+                listaPendentes.Add("Hepatite A");
+            }
+            if (!PendenteHPV(listaStatusVacinas))
+            {
+                listaPendentes.Add("HPV");
+            }
+            return View(listaPendentes);
+        }
 
-            return RedirectToAction("Index", "Usuario");
+        public int ContagemVacinas(List<StatusVacina> listaStatusVacinas, TipoVacinaEnum tipo)
+        {
+            int contagem = 0;
+            foreach (StatusVacina statusVacina in listaStatusVacinas)
+            {
+                if (statusVacina.Vacina.Tipo.Equals(tipo))
+                {
+                    if(statusVacina.Status.Equals(true))
+                    {
+                        contagem++;
+                    }
+                }
+            }
+            return contagem;
+        }
+
+        public bool PendenteBCG(List<StatusVacina> listaStatusVacina)
+        {
+            int contagemBCG = ContagemVacinas(listaStatusVacina, TipoVacinaEnum.BCG);
+            if (contagemBCG == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteHepatiteB(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemHepatiteB = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.HepatiteB);
+            if (contagemHepatiteB == 0)
+            {
+                int contagemPentavalente = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.Pentavalente);
+                if (contagemPentavalente < 5)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
+        public bool PendentePentavalente(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemPentavalente = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.Pentavalente);
+            if (contagemPentavalente < 5)
+            {
+                int contagemAdolAdulIdo = 0;
+                foreach (StatusVacina statusVacina in listaStatusVacinas)
+                {
+                    if ((statusVacina.Vacina.Categoria == CategoriaVacinaEnum.Adolescente ||
+                         statusVacina.Vacina.Categoria == CategoriaVacinaEnum.Adulto ||
+                         statusVacina.Vacina.Categoria == CategoriaVacinaEnum.Idoso) &&
+                        statusVacina.Vacina.Tipo == TipoVacinaEnum.Pentavalente)
+                    {
+                        if (statusVacina.Status)
+                        {
+                            contagemAdolAdulIdo++;
+                        }
+                    }
+                }
+                if (contagemAdolAdulIdo < 2)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
+        public bool PendentePoliomielite(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemPoliomielite = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.Poliomielite);
+            if (contagemPoliomielite < 5)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendentePneumococica(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemPneumococica = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.Pneumococica10V);
+            if (contagemPneumococica < 3)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteRotavirus(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemRotavirus = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.Rotavirus);
+            if (contagemRotavirus < 2)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteMeningococicaC(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemMeningococica = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.MeningococicaC);
+            if (contagemMeningococica < 3)
+            {
+                if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-10) && contagemMeningococica == 2)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteFebreAmarela(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemFebreAmarela = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.FebreAmarela);
+            if (contagemFebreAmarela == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteTripliceViral(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemTripliceViral = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.TripliceViral);
+            if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-10) && contagemTripliceViral == 1)
+            {
+                return true;
+            }
+            else if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-20) && contagemTripliceViral == 2)
+            {
+                return true;
+            }
+            else if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-50) && contagemTripliceViral != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool PendenteHepatiteA(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemHepatiteA = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.HepatiteA);
+            if (contagemHepatiteA == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteTetraViral(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemTetraViral = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.TetraViral);
+            if (contagemTetraViral == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool PendenteHPV(List<StatusVacina> listaStatusVacinas)
+        {
+            int contagemHPV = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.HPV);
+            if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-10) || contagemHPV > 1)
+            {
+                return true;
+            }
+            return false;
         }
 
 

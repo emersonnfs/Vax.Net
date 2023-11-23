@@ -43,6 +43,7 @@
                     Remover
                 </button>
                 <a asp-controller="StatusVacina" asp-action="Formulario" asp-route-id="@usuario.Id" class="btn btn-sm btn-outline-success">Ver Formulário</a>
+                <a asp-controller="StatusVacina" asp-action="Pendentes" asp-route-id="@usuario.Id" class="btn btn-sm btn-outline-warning">Vacinas Pendentes</a>
             </td>
         </tr>
     }

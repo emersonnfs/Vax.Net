@@ -1,0 +1,23 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Vacinas Pendentes";
+}
+
+<h1>Vacinas Pendentes</h1>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var vacina in Model)
+        {
+            <li>@vacina</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nenhuma vacina pendente.</p>
+}
+
+<a asp-controller="Usuario" asp-action="Index" class="btn btn-primary">Voltar</a>
