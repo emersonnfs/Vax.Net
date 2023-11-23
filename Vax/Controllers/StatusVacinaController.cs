@@ -142,6 +142,22 @@ namespace Vax.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult AtualizarStatus(int id, bool novoStatus)
+        {
+            var statusVacina = _context.StatusVacinas.Find(id);
+
+            if (statusVacina == null)
+            {
+                return NotFound();
+            }
+
+            statusVacina.Status = novoStatus;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Usuario");
+        }
+
 
     }
 

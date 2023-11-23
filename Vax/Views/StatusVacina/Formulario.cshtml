@@ -4,38 +4,59 @@
     ViewData["Title"] = "Formulário de Vacinas";
 }
 
-<h1>Formulário de Vacinas</h1>
+<h1 class="mb-4">Formulário de Vacinas</h1>
 
 @foreach (var categoria in Model)
 {
-    <section>
-        <h2>@categoria.Key</h2>
-        @foreach (var tipo in categoria.Value)
-        {
-            <div>
-                <h3>@tipo.Key</h3>
-                <table class="table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Dose</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach (FormVacina vacina in tipo.Value)
-                    {
-                        <tr>
-                            <td>@vacina.Id</td>
-                            <td>@vacina.Nome</td>
-                            <td>@vacina.Descricao</td>
-                            <td>@vacina.Dose</td>
-                            <td>
-                                <input type="checkbox" @(vacina.Status ? "checked" : "") disabled />
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
-        }
-    </section>
+    <div class="mb-4">
+        <h2 class="bg-primary text-white p-2">@categoria.Key</h2>
+        <div class="row">
+            @foreach (var tipo in categoria.Value)
+            {
+                <div class="col-md-6">
+                    <h3 class="bg-secondary text-white p-2">@tipo.Key</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Dose</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (FormVacina vacina in tipo.Value)
+                            {
+                                <tr>
+                                    <td>@vacina.Id</td>
+                                    <td>@vacina.Nome</td>
+                                    <td>@vacina.Descricao</td>
+                                    <td>@vacina.Dose</td>
+                                    <td class="status-cell">
+                                        <input type="checkbox" class="status-checkbox" @(vacina.Status ? "checked" : "") disabled />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
 }
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.status-cell').click(function () {
+                var checkbox = $(this).find('.status-checkbox');
+
+                checkbox.prop('checked', !checkbox.prop('checked'));
+
+                console.log("Novo valor do checkbox: " + checkbox.prop('checked'));
+            });
+        });
+    </script>
+}
+

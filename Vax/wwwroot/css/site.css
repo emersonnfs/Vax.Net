@@ -55,3 +55,51 @@ body {
         color: #fff; /* Cor do texto para o dia atual */
         border: 1px solid #357ebd; /* Borda ao redor do dia atual */
     }
+
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 30px; /* ajuste conforme necessário para o tamanho desejado */
+    cursor: pointer;
+}
+
+    .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px; /* ajuste conforme necessário para o tamanho desejado */
+    width: 50px; /* ajuste conforme necessário para o tamanho desejado */
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background-color: #428bca; /* cor quando estiver marcado */
+    border: 1px solid #357ebd; /* borda quando estiver marcado */
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
