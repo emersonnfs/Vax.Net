@@ -15,6 +15,7 @@
       - [Inicialização de Data](#inicialização-data)
     - [Controllers](#controllers)
       - [Usuário Controller](#usuário-controller)
+      - [Status Vacina Controller](#status-vacina-controller)
 
 ## Descrição
 
@@ -169,3 +170,4 @@ Para a UsuarioController nós implementamos a classe Controller do Microsoft.Asp
 `IActionResult Remover(int id)` - Nesse método é recebido o id de um Usuário, caso ele exista, esse Usuário é removido do banco de dados, é emitido a mensagem de "Usuário removido!" de sucesso, e é redirecionado para página de Index;
 
 ---
+#### Status Vacina Controller
