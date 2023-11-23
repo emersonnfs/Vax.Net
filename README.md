@@ -171,3 +171,39 @@ Para a UsuarioController nós implementamos a classe Controller do Microsoft.Asp
 
 ---
 #### Status Vacina Controller
+Para a StatusVacinaController nós implementamos a classe Controller do Microsoft.AspNetCore.Mvc e dentro dela criamos os seguintes métodos:
+```js
+  IActionResult Formulario(int id);
+  Dictionary<TipoVacinaEnum, List<FormVacina>> ListarVacinas(List<StatusVacina> statusVacinas, CategoriaVacinaEnum categoriaVacinaEnum);
+  DescricaoVacinaAttribute ObterDescricaoVacina(TipoVacinaEnum vacinaEnum);
+  IActionResult AtualizarStatus(Dictionary<string, Dictionary<int, bool>> statusVacinas);
+  IActionResult Pendentes(int id);
+  int ContagemVacinas(List<StatusVacina> listaStatusVacinas, TipoVacinaEnum tipo);
+  bool PendenteBCG(List<StatusVacina> listaStatusVacina);
+  bool PendenteHepatiteB(List<StatusVacina> listaStatusVacinas);
+  bool PendentePentavalente(List<StatusVacina> listaStatusVacinas);
+  bool PendentePoliomielite(List<StatusVacina> listaStatusVacinas);
+  bool PendentePneumococica(List<StatusVacina> listaStatusVacinas);
+  bool PendenteRotavirus(List<StatusVacina> listaStatusVacinas);
+  bool PendenteMeningococicaC(List<StatusVacina> listaStatusVacinas);
+  bool PendenteFebreAmarela(List<StatusVacina> listaStatusVacinas);
+  bool PendenteTripliceViral(List<StatusVacina> listaStatusVacinas);
+  bool PendenteHepatiteA(List<StatusVacina> listaStatusVacinas);
+  bool PendenteTetraViral(List<StatusVacina> listaStatusVacinas);
+  bool PendenteHPV(List<StatusVacina> listaStatusVacinas);  
+```
+`IActionResult Formulario(int id)` - Nesse método é recebido o id de um Usuário, caso ele exista, vai ser buscado uma lista de StatusVacina que vai conter todas as vacinas desse Usuário, então será feito um mapeamento em primeira instância do CategoriaVacinaEnum( se é criança, adolescente, etc.), em segunda instância do TipoVacinaEnum e dentro dessa segunda instância sera convertido os StatusVacina's em FormVacina, para melhor exibição da informações. Com isso é utilizado a idade do Usuário para saber quais vacinas vão está adequadas a sua idade, e com isso é retornado um Dictionary<string, Dictionary<string, List<object>>>.
+
+`Dictionary<TipoVacinaEnum, List<FormVacina>> ListarVacinas(List<StatusVacina> statusVacinas, CategoriaVacinaEnum categoriaVacinaEnum);` - Nesse método é recebido uma Lista de StatusVacina e um CategoriaVacinaEnum, e nele vai ajustar o Dictionary<string, Dictionary<string, List<object>>> para ter o FormVacina com as informações de descrição e ordenado por tipo e eles nos retorna um Dictionary<TipoVacinaEnum, List<FormVacina>>.
+
+`DescricaoVacinaAttribute ObterDescricaoVacina(TipoVacinaEnum vacinaEnum)` - Nesse método é recebido um TipoVacinaEnum, e nele vai retornar a descrição desse tipo de Vacina.
+
+`IActionResult AtualizarStatus(Dictionary<string, Dictionary<int, bool>> statusVacinas)` - Nesse método é recebido um Dictionary<string, Dictionary<int, bool>>, e vai atualizar com os dados do Formulário, no Status do StatusVacina, e se tudo ocorrer bem ele retorna uma mensagem "Formulário Atualizado com Sucesso!" e um Ok, pois nesse método foi passado as informações via AJAX.
+
+`IActionResult Pendentes(int id)` - Nesse método é recebido um id de um Usuário, caso esse Usuário exista, é buscado uma lista de StatusVacina desse determinado Usuário e será validado com base nos métodos que são do tipo booleano que começam com Pendente... e será adionado em uma Lista de string aqueles que retornarem false.
+
+`int ContagemVacinas(List<StatusVacina> listaStatusVacinas, TipoVacinaEnum tipo)` - Nesse método é recebido uma lista de StatusVacina e um TipoVacinaEnum, e será retornado a quantidade de vezes que o determinado TipoVacinaEnum tem o valor true, e com isso será utilizado na validação das vacinas.
+
+`bool PendenteBCG(List<StatusVacina> listaStatusVacina)`, `bool PendenteHepatiteB(List<StatusVacina> listaStatusVacina)`, `bool PendentePentavalente(List<StatusVacina> listaStatusVacina)`, `bool PendentePoliomielite(List<StatusVacina> listaStatusVacina)`, `bool PendentePneumococica(List<StatusVacina> listaStatusVacina)`, `bool PendenteRotavirus(List<StatusVacina> listaStatusVacina)`, `bool PendenteMeningococicaC(List<StatusVacina> listaStatusVacina)`, `bool PendenteFebreAmarela(List<StatusVacina> listaStatusVacina)`, `bool PendenteTripliceViral(List<StatusVacina> listaStatusVacina)`, `bool PendenteHepatiteA(List<StatusVacina> listaStatusVacina)`, `bool PendenteTetraViral(List<StatusVacina> listaStatusVacina)` e `bool PendenteHPV(List<StatusVacina> listaStatusVacina)` - Nesses métodos são recebidos uma Lista de StatusVacina, e com isso é feito a contagem de vacinas tomadas do tipo no método, e com isso é implementado a lógica de cada uma e se estiver pendente essa Vacina é retornado false, caso contrário retorna true.
+
+---
