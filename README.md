@@ -141,3 +141,22 @@ Dessa forma é possível eu já ter esses dados persistidos quando o projeto for
 ---
 ### Controllers
 #### Usuário Controller
+Para a UsuarioController nós implementamos a classe Controller do Microsoft.AspNetCore.Mvc e dentro dela criamos os seguintes métodos:
+```js
+  IActionResult Index();
+  IActionResult Cadastrar();
+  IActionResult Cadastrar(Usuario usuario);
+  int CadastrarEndereco(Endereco endereco);
+  int CadastrarTelefone(Telefone telefone);
+  IActionResult Editar(int id);
+  IActionResult Editar(Usuario usuario);
+  IActionResult Remover(int id);
+```
+`IActionResult Index()`
+Retornamos a lista de Usuários incluindo o Endereço e o Telefone.
+
+`IActionResult Cadastrar()`
+Retornamos a View de Cadastrar.
+
+`IActionResult Cadastrar(Usuario usuario)`
+Nesse método recebemos um Usuário e fazemos o cadastro de Endereço e Telefone que vão retornar o seus respectivos Id's, com isso cadastramos nos campos EnderecoId e TelefoneId esses Id's, e assim cadastramos o usuário, retornando um direcionamento para página de Index.
