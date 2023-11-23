@@ -1,7 +1,7 @@
 # Vax.Net
 - MENU
   - [Descrição](#descrição)
-    -[Integrantes](#integrantes)
+    - [Integrantes](#integrantes)
   - [Formulário](#formulário)
     - [Models](#models)
       - [Telefone](#telefone)
