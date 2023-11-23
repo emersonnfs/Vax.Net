@@ -18,7 +18,11 @@
       - [Status Vacina Controller](#status-vacina-controller)
     - [Views](#views)
       - [Usuário View](#usuário-view)
-        -[_Form](#form)
+        - [_Form](#form)
+        - [Cadastrar](#cadastrar)
+        - [Editar](#editar)
+        - [Index](#index)
+      - [Status Vacina View](#status-vacina-view)
 
 # Descrição
 
@@ -225,3 +229,24 @@ Para a StatusVacinaController nós implementamos a classe Controller do Microsof
 ## Views
 ### Usuário View
 #### Form
+No _Form é feito um escopo do formulário preenchido com os dados do Usuário que vai ser utilizado tanto para Cadastrar os dados do Usuário, como para Editar os dados do Usuário.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/439ebc72-c3a6-4b79-bae9-45b25edd5370)
+
+---
+#### Cadastrar
+Na View Cadastrar, se tem um form que é utilizado o asp-action para chamar o método Cadastrar da Controller, e é passado o método POST, tem o _Form que são os campos do formulário, além disso tem dois botões um de listar usuários e outro de cadastrar.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/9f679bfc-b2b3-497f-ab9b-3c0dce9f66af)
+
+---
+#### Editar
+Na View Editar, é muito similar ao de Cadastrar, ele tem um form que é utilizado o asp-action para chamar o método Editar da Controller, e é passado o método POST, tem o _Form que são os campos do formulário, além disso tem dois botões um de cancerlar que retorna para a listagem e o outro de editar que atualiza os dados do Usuário.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/c13c893d-5c9c-42bc-9765-f692ec26569d)
+
+---
+#### Index
+No Index ele recebe os dados do método Index, exibe eles dentro de uma tabela, onde cada linha é um Usuário diferente, e tem 4 botões , o de Editar que chama a View Editar do Usuário, o de Remover que quando acionado abre um modal de confirmação, se confirmado chama o método Remover da Controller, o Ver Formulário que chama a View do StausVacina chamado Formulario e chama o Formulário da Controller da StatusVacina e o Vacina Pendentes que chama a View Pendentes do StatusVacina e chama o método Pendentes do Controller da StatusVacina.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/721db2ca-0ec2-4258-b54e-d2c71636897b)
+
+---
+### Status Vacina View
+#### Formulário
