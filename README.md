@@ -16,6 +16,7 @@
     - [Controllers](#controllers)
       - [Usuário Controller](#usuário-controller)
       - [Status Vacina Controller](#status-vacina-controller)
+    - [Views](#_form)
 
 ## Descrição
 
@@ -219,3 +220,5 @@ Para a StatusVacinaController nós implementamos a classe Controller do Microsof
 - Nesses métodos são recebidos uma Lista de StatusVacina, e com isso é feito a contagem de vacinas tomadas do tipo no método, e com isso é implementado a lógica de cada uma e se estiver pendente essa Vacina é retornado false, caso contrário retorna true.
 
 ---
+### Views
+#### _Form
