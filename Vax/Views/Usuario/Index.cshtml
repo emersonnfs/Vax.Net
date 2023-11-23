@@ -42,6 +42,7 @@
                 <button onclick="usuarioId.value = @usuario.Id" type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Remover
                 </button>
+                <a asp-action="Formulario" asp-route-id="@usuario.Id" class="btn btn-sm btn-outline-success">Ver Formulário</a>
             </td>
         </tr>
     }

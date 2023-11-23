@@ -1,0 +1,41 @@
+﻿@model Dictionary<string, Dictionary<string, List<object>>>
+
+@{
+    ViewData["Title"] = "Formulário de Vacinas";
+}
+
+<h1>Formulário de Vacinas</h1>
+
+@foreach (var categoria in Model)
+{
+    <section>
+        <h2>@categoria.Key</h2>
+        @foreach (var tipo in categoria.Value)
+        {
+            <div>
+                <h3>@tipo.Key</h3>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Dose</th>
+                        <th>Status</th>
+                    </tr>
+                    @foreach (FormVacina vacina in tipo.Value)
+                    {
+                        <tr>
+                            <td>@vacina.Id</td>
+                            <td>@vacina.Nome</td>
+                            <td>@vacina.Descricao</td>
+                            <td>@vacina.Dose</td>
+                            <td>
+                                <input type="checkbox" @(vacina.Status ? "checked" : "") disabled />
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </section>
+}
