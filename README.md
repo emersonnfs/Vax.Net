@@ -205,10 +205,17 @@ Para a StatusVacinaController nós implementamos a classe Controller do Microsof
 `int ContagemVacinas(List<StatusVacina> listaStatusVacinas, TipoVacinaEnum tipo)` - Nesse método é recebido uma lista de StatusVacina e um TipoVacinaEnum, e será retornado a quantidade de vezes que o determinado TipoVacinaEnum tem o valor true, e com isso será utilizado na validação das vacinas.
 
 `bool PendenteBCG(List<StatusVacina> listaStatusVacina)`, `bool PendenteHepatiteB(List<StatusVacina> listaStatusVacina)`,
+
 `bool PendentePentavalente(List<StatusVacina> listaStatusVacina)`, `bool PendentePoliomielite(List<StatusVacina> listaStatusVacina)`,
+
 `bool PendentePneumococica(List<StatusVacina> listaStatusVacina)`, `bool PendenteRotavirus(List<StatusVacina> listaStatusVacina)`,
+
 `bool PendenteMeningococicaC(List<StatusVacina> listaStatusVacina)`, `bool PendenteFebreAmarela(List<StatusVacina> listaStatusVacina)`,
+
 `bool PendenteTripliceViral(List<StatusVacina> listaStatusVacina)`, `bool PendenteHepatiteA(List<StatusVacina> listaStatusVacina)`,
-`bool PendenteTetraViral(List<StatusVacina> listaStatusVacina)` e `bool PendenteHPV(List<StatusVacina> listaStatusVacina)` - Nesses métodos são recebidos uma Lista de StatusVacina, e com isso é feito a contagem de vacinas tomadas do tipo no método, e com isso é implementado a lógica de cada uma e se estiver pendente essa Vacina é retornado false, caso contrário retorna true.
+
+`bool PendenteTetraViral(List<StatusVacina> listaStatusVacina)` e `bool PendenteHPV(List<StatusVacina> listaStatusVacina)`
+
+- Nesses métodos são recebidos uma Lista de StatusVacina, e com isso é feito a contagem de vacinas tomadas do tipo no método, e com isso é implementado a lógica de cada uma e se estiver pendente essa Vacina é retornado false, caso contrário retorna true.
 
 ---
