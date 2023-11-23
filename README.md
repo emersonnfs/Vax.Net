@@ -13,6 +13,8 @@
       - [Data Context](#data-context)
     - [Services](#services)
       - [Inicialização de Data](#inicialização-data)
+    - [Controllers](#controllers)
+      - [Usuário Controller](#usuário-controller)
 
 ## Descrição
 
@@ -137,3 +139,5 @@ Para o DataInitializationService, utilizamos da biblioteca do Sistema chamada IS
 Dessa forma é possível eu já ter esses dados persistidos quando o projeto for inicializado, que tem um função muito importante enquanto o projeto está em produção, para poder manipular os dados nesse projeto.
 
 ---
+### Controllers
+#### Usuário Controller
