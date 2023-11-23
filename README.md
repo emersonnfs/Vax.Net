@@ -2,8 +2,8 @@
 - MENU
   - [Descrição](#descrição)
   - [Formulário](#formulário)
-    -[Models](#models)
-      -[Telefone](#telefone)
+    - [Models](#models)
+      - [Telefone](#telefone)
 
   ## Descrição
 
