@@ -7,6 +7,8 @@
       - [Endereço](#endereço)
       - [Usuário](#usuário)
       - [Vacina](#vacina)
+      - [Status Vacina](#status-vacina)
+      - [Formulário Vacina](#formulário-vacina)
 
   ## Descrição
 
@@ -58,3 +60,27 @@
     ICollection<StatusVacina>? StatusVacinas;
   ```
   O TipoVacinaEnum é os tipos de Vacinas que são tomadas pelo plano de vacinação brasileiro, onde dentro desse enum foi criado o atributo descrição que tem uma breve descrição da vacina. O CategoriaVacinaEnum diz qual etapa essa vacina faz parte(criança, adolescente, adulto,idoso). O DoseVacinaEnum diz qual é a dose que está sendo tomada. O collection é uma coleção de todos os StatusVacinas que o determinada vacina possui, que por razões de lógica é possível ser nula. 
+#### Status Vacina
+Para o StatusVacina criamos os determinados campos:
+```js
+  int Id;
+  Vacina Vacina;
+  Usuario Usuario;
+  bool Status;
+```
+O StatusVacina recebe as informações do Usuário e da Vacina para cada vacina possível dentro do sistema, e tem o campo de Status que é um booleano que se for verdadeiro diz que a vacina foi tomada e se for falso que ela não foi tomada, que para a lógica do projeto vai ser fundamental para indicar quais vacinas ainda não foram tomadas.
+#### Formulário Vacina
+Para o FormVacina temos os determinados campos:
+```js
+  int Id;
+  string Nome;
+  string Descricao;
+  DoseVacinaEnum Dose;
+  bool Status;
+```
+O FormVacina é um formulário que vai ser utilizado para exibir o formulário de vacinas a ser preenchido, que junto com o FormVacina existe o CategoriaVacinaViewModel que possui os determinados campos:
+```js
+  string CategoriaNome;
+  Dictionary<string, List<FormVacina>> Tipos;
+```
+O CategoriaVacinaViewModel existe para auxiliar na exibição do formulário de forma ordenada na View do Formulário.
