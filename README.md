@@ -86,6 +86,7 @@ O FormVacina é um formulário que vai ser utilizado para exibir o formulário d
   Dictionary<string, List<FormVacina>> Tipos;
 ```
 O CategoriaVacinaViewModel existe para auxiliar na exibição do formulário de forma ordenada na View do Formulário.
+
 ---
 ### Data
 #### Data Context
