@@ -78,7 +78,7 @@ Para o FormVacina temos os determinados campos:
   DoseVacinaEnum Dose;
   bool Status;
 ```
-O FormVacina é um formulário que vai ser utilizado para exibir o formulário de vacinas a ser preenchido, que junto com o FormVacina existe o CategoriaVacinaViewModel que possui os determinados campos:
+O FormVacina é um formulário que vai ser utilizado para exibir o formulário de vacinas a ser preenchido, e junto com o FormVacina existe o CategoriaVacinaViewModel que possui os determinados campos:
 ```js
   string CategoriaNome;
   Dictionary<string, List<FormVacina>> Tipos;
