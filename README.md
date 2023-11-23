@@ -24,6 +24,7 @@
         - [Index](#index)
       - [Status Vacina View](#status-vacina-view)
         - [Formulário](#formulário)
+        - [Pendentes](#pendentes)
 
 # Descrição
 
