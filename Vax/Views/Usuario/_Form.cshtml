@@ -31,7 +31,7 @@
         <option value="Outro">Outro</option>
     </select>
 </div>
-@* Campos do Endereco *@
+
 <div class="form-group">
     <label asp-for="Endereco.Estado"></label>
     <select asp-for="Endereco.Estado" class="form-control">
@@ -55,7 +55,6 @@
     <span asp-validation-for="Endereco.Logradouro" class="text-danger"></span>
 </div>
 
-@* Campos do Telefone *@
 <div class="form-group">
     <label asp-for="Telefone.Ddd"></label>
     <input asp-for="Telefone.Ddd" class="form-control" />

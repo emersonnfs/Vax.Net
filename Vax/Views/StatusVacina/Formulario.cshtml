@@ -67,11 +67,10 @@
             });
 
             $('#formAtualizar').submit(function (e) {
-                e.preventDefault(); // Evita o envio padrão do formulário
+                e.preventDefault();
 
                 var statusVacinas = {};
 
-                // Obtém os valores dos checkboxes e popula o objeto statusVacinas
                 $('.status-cell input[type="checkbox"]').each(function () {
                     var checkbox = $(this);
                     var status = checkbox.prop('checked');
@@ -85,16 +84,13 @@
                     statusVacinas[tipoKey][vacinaId] = status;
                 });
 
-                // Envia os dados via AJAX
                 $.ajax({
                     type: 'POST',
                     url: '/StatusVacina/AtualizarStatus',
                     data: { statusVacinas: statusVacinas },
                     success: function () {
-                        // Atualiza a página ou executa outras ações após o sucesso
                         console.log('Dados atualizados com sucesso!');
 
-                        // Redireciona para o Index do Usuario
                         window.location.href = '/Usuario/Index';
                     },
                     error: function () {

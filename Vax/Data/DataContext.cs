@@ -28,13 +28,13 @@ namespace Vax.Data
                 .HasOne(sv => sv.Usuario)
                 .WithMany(u => u.StatusVacinas)
                 .HasForeignKey(sv => sv.UsuarioId)
-                .OnDelete(DeleteBehavior.Cascade);  // Adicionando exclusão em cascata
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<StatusVacina>()
                 .HasOne(sv => sv.Vacina)
                 .WithMany(v => v.StatusVacinas)
                 .HasForeignKey(sv => sv.VacinaId)
-                .OnDelete(DeleteBehavior.Cascade);  // Adicionando exclusão em cascata
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -154,28 +154,23 @@ namespace Vax.Controllers
                         int vacinaId = vacinaIdAndStatus.Key;
                         bool novoStatus = vacinaIdAndStatus.Value;
 
-                        // Consulta o StatusVacina pelo Id da vacina
                         var statusVacina = _context.StatusVacinas.FirstOrDefault(sv => sv.Id == vacinaId);
 
                         if (statusVacina != null)
                         {
-                            // Atualiza o status
                             statusVacina.Status = novoStatus;
                         }
                     }
                 }
 
-                // Salva as alterações no banco de dados
                 _context.SaveChanges();
 
                 TempData["msg"] = "Formulário Atualizado com Sucesso!";
 
-                // Retorna uma resposta de sucesso
                 return Ok();
             }
             catch (Exception ex)
             {
-                // Captura qualquer exceção e imprime no console
                 Console.WriteLine(ex.Message);
                 return BadRequest("Erro ao atualizar status.");
             }
