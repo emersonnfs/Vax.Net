@@ -23,6 +23,7 @@
         - [Editar](#editar)
         - [Index](#index)
       - [Status Vacina View](#status-vacina-view)
+        - [Formulário](#formulário)
 
 # Descrição
 
@@ -250,3 +251,13 @@ No Index ele recebe os dados do método Index, exibe eles dentro de uma tabela, 
 ---
 ### Status Vacina View
 #### Formulário
+No Formulario, ele recebe os dados do método Formulário, que com ele é utilizado para exibir de uma forma bem visual onde o para cada vacina que aparece tem um checkbox que pode se marcado ou desmarcado se caso a pessoa tenha ou não tomado essa Vacina, é utilizado o JQuery para isso, tem 2 botões no fim da página de cancelar, que retorna para o Index do Usuário, e o de atualizar, que atualiza todos os dados do StatusVacina conforme a marcação do checkbox, e ele faz isso chamando o método AtualizarStatus da Controller, e passa as informações via AJAX.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/04e3eb57-41aa-4d4b-97cc-3da9fdd7ba19)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/5899add0-82f1-459a-9524-6cf4f226938c)
+
+---
+#### Pendentes
+No Pendentes, ele vai receber uma lista de string's, que é recebida do método Pendentes da Controller, a lista é exibida e tem um botão de voltar que redireciona para o Index do Usuário.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/1ca490ad-cf6e-4458-adc7-84440c1c7aa7)
+
+---
