@@ -111,3 +111,29 @@ Dessa forma temos as tabelas a cima cadastradas no banco de dados e com o auxíl
 ---
 ### Services
 #### Inicialização Data
+Para o DataInitializationService, utilizamos da biblioteca do Sistema chamada IServiceProvider para criar um escopo do banco de dados, especificamente para a tabela Vacinas, com isso sempre que o nosso projeto é inicializado, o DataInitializationService vai conferir a tabela Vacinas e caso ela esteja vazia, ele irá implementar 48 vacinas, que são as variações de vacinas que existem no projeto sendo implementado como no exemplo a baixo:
+```js
+  using (var scope = _serviceProvider.CreateScope())
+  {
+      var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+  
+      if (!dbContext.Vacinas.Any())
+      {
+          //Vacina BCG
+          var vacina = new Vacina 
+          { 
+              Id = 1, 
+              Nome = "BCG", 
+              Tipo = TipoVacinaEnum.BCG, 
+              Categoria = CategoriaVacinaEnum.Criança, 
+              Dose = DoseVacinaEnum.DoseUnica 
+          };
+          dbContext.Vacinas.Add(vacina);
+          /// Demais vacinas
+          dbContext.SaveChanges();
+    }
+  }
+```
+Dessa forma é possível eu já ter esses dados persistidos quando o projeto for inicializado, que tem um função muito importante enquanto o projeto está em produção, para poder manipular os dados nesse projeto.
+
+---
