@@ -16,18 +16,18 @@
     - [Controllers](#controllers)
       - [Usuário Controller](#usuário-controller)
       - [Status Vacina Controller](#status-vacina-controller)
-    - [Views](#_form)
+    - [Views](#form)
 
-## Descrição
+# Descrição
 
 
 ---
 
-## Formulário
+# Formulário
   
-### Models
+## Models
   
-#### Telefone
+### Telefone
 Para o Telefone criamos os determinados campos:
 ```js
   int Id;
@@ -35,7 +35,7 @@ Para o Telefone criamos os determinados campos:
   int Numero;
 ```
 Eles são consumidos pelo o Usuário.
-#### Endereço
+### Endereço
 Para o Endereço criamos os determinados campos:
 ```js
   int Id;
@@ -44,7 +44,7 @@ Para o Endereço criamos os determinados campos:
   string Logradouro;
 ```
 O EstadoEnum é um enum com as siglas dos Estados brasileiro.O Endereço é consumido pelo o Usuário.
-#### Usuário
+### Usuário
 Para o Usuário criamos os determinados campos:
 ```js
   int Id;
@@ -57,7 +57,7 @@ Para o Usuário criamos os determinados campos:
   ICollection<StatusVacina>? StatusVacinas;
 ```
 O GeneroEnum é o gênero biológico do usuário usuário que também acrescemos o "Outro" para quem não se sentir confortável em informar o seu gênero biológico, está consumindo os dados de Endereço e Telefone de classes previamente criadas. O collection é uma coleção de todos os StatusVacinas que o determinado usuário possui, que por razões de lógica é possível ser nula.
-#### Vacina
+### Vacina
 Para a Vacina criamos os determinados campos:
 ```js
   int Id;
@@ -68,7 +68,7 @@ Para a Vacina criamos os determinados campos:
   ICollection<StatusVacina>? StatusVacinas;
 ```
 O TipoVacinaEnum é os tipos de Vacinas que são tomadas pelo plano de vacinação brasileiro, onde dentro desse enum foi criado o atributo descrição que tem uma breve descrição da vacina. O CategoriaVacinaEnum diz qual etapa essa vacina faz parte(criança, adolescente, adulto,idoso). O DoseVacinaEnum diz qual é a dose que está sendo tomada. O collection é uma coleção de todos os StatusVacinas que o determinada vacina possui, que por razões de lógica é possível ser nula. 
-#### Status Vacina
+### Status Vacina
 Para o StatusVacina criamos os determinados campos:
 ```js
   int Id;
@@ -77,7 +77,7 @@ Para o StatusVacina criamos os determinados campos:
   bool Status;
 ```
 O StatusVacina recebe as informações do Usuário e da Vacina para cada vacina possível dentro do sistema, e tem o campo de Status que é um booleano que se for verdadeiro diz que a vacina foi tomada e se for falso que ela não foi tomada, que para a lógica do projeto vai ser fundamental para indicar quais vacinas ainda não foram tomadas.
-#### Formulário Vacina
+### Formulário Vacina
 Para o FormVacina temos os determinados campos:
 ```js
   int Id;
@@ -94,8 +94,8 @@ O FormVacina é um formulário que vai ser utilizado para exibir o formulário d
 O CategoriaVacinaViewModel existe para auxiliar na exibição do formulário de forma ordenada na View do Formulário.
 
 ---
-### Data
-#### Data Context
+## Data
+### Data Context
 Para a persistência em banco de dados, estamos usando o Oracle DataBase que é disponibilizado pela FIAP, para comunicar com o banco de dados utilizamos dos seguintes frameworks:
 
 `Microsoft.EntityFrameworkCore.Design`
@@ -113,8 +113,8 @@ Com esses frameworks foi possível construir as Entidades no banco de dados impl
 Dessa forma temos as tabelas a cima cadastradas no banco de dados e com o auxílio da DbContext manipuladas facilmente.
 
 ---
-### Services
-#### Inicialização Data
+## Services
+### Inicialização Data
 Para o DataInitializationService, utilizamos da biblioteca do Sistema chamada IServiceProvider para criar um escopo do banco de dados, especificamente para a tabela Vacinas, com isso sempre que o nosso projeto é inicializado, o DataInitializationService vai conferir a tabela Vacinas e caso ela esteja vazia, ele irá implementar 48 vacinas, que são as variações de vacinas que existem no projeto sendo implementado como no exemplo a baixo:
 ```js
   using (var scope = _serviceProvider.CreateScope())
@@ -141,8 +141,8 @@ Para o DataInitializationService, utilizamos da biblioteca do Sistema chamada IS
 Dessa forma é possível eu já ter esses dados persistidos quando o projeto for inicializado, que tem um função muito importante enquanto o projeto está em produção, para poder manipular os dados nesse projeto.
 
 ---
-### Controllers
-#### Usuário Controller
+## Controllers
+### Usuário Controller
 Para a UsuarioController nós implementamos a classe Controller do Microsoft.AspNetCore.Mvc e dentro dela criamos os seguintes métodos:
 ```js
   IActionResult Index();
@@ -171,7 +171,7 @@ Para a UsuarioController nós implementamos a classe Controller do Microsoft.Asp
 `IActionResult Remover(int id)` - Nesse método é recebido o id de um Usuário, caso ele exista, esse Usuário é removido do banco de dados, é emitido a mensagem de "Usuário removido!" de sucesso, e é redirecionado para página de Index;
 
 ---
-#### Status Vacina Controller
+### Status Vacina Controller
 Para a StatusVacinaController nós implementamos a classe Controller do Microsoft.AspNetCore.Mvc e dentro dela criamos os seguintes métodos:
 ```js
   IActionResult Formulario(int id);
@@ -220,5 +220,5 @@ Para a StatusVacinaController nós implementamos a classe Controller do Microsof
 - Nesses métodos são recebidos uma Lista de StatusVacina, e com isso é feito a contagem de vacinas tomadas do tipo no método, e com isso é implementado a lógica de cada uma e se estiver pendente essa Vacina é retornado false, caso contrário retorna true.
 
 ---
-### Views
-#### _Form
+## Views
+### Form
