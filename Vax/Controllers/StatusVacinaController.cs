@@ -108,7 +108,7 @@ namespace Vax.Controllers
                     var formVacina = new FormVacina
                     {
                         Id = statusVacina.Id,
-                        Nome = descricaoVacina.Nome,
+                        Nome = vacina.Nome,
                         Descricao = descricaoVacina.Descricao,
                         Dose = vacina.Dose,
                         Status = statusVacina.Status
@@ -367,15 +367,22 @@ namespace Vax.Controllers
         public bool PendenteTripliceViral(List<StatusVacina> listaStatusVacinas)
         {
             int contagemTripliceViral = ContagemVacinas(listaStatusVacinas, TipoVacinaEnum.TripliceViral);
-            if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-10) && contagemTripliceViral == 1)
+            Console.WriteLine(contagemTripliceViral);
+            Console.WriteLine(listaStatusVacinas[0].Usuario.DataNascimento);
+            Console.WriteLine(DateTime.Now.AddYears(-10));
+;            if (DateTime.Now.AddYears(-10) < listaStatusVacinas[0].Usuario.DataNascimento && contagemTripliceViral == 1)
             {
                 return true;
             }
-            else if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-20) && contagemTripliceViral == 2)
+            else if (DateTime.Now.AddYears(-20) < listaStatusVacinas[0].Usuario.DataNascimento && contagemTripliceViral > 1)
             {
                 return true;
             }
-            else if (listaStatusVacinas[0].Usuario.DataNascimento > DateTime.Now.AddYears(-50) && contagemTripliceViral != 0)
+            else if (DateTime.Now.AddYears(-50) < listaStatusVacinas[0].Usuario.DataNascimento && contagemTripliceViral != 0)
+            {
+                return true;
+            }
+            else if (listaStatusVacinas[0].Usuario.DataNascimento < DateTime.Now && contagemTripliceViral != 0)
             {
                 return true;
             }
