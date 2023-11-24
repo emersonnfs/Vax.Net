@@ -47,7 +47,7 @@
 
 ---
 ## Link Youtube
-https://www.youtube.com/watch?v=ayvMvdkrYiI
+[https://www.youtube.com/watch?v=ayvMvdkrYiI](https://youtu.be/ayvMvdkrYiI?si=4pnM-B93DLd_JZyn)
 
 ---
 ## Introdução
