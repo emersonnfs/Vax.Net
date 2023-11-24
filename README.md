@@ -2,6 +2,7 @@
 - MENU
   - [Descrição](#descrição)
     - [Integrantes](#integrantes)
+    - [Introdução]
   - [Formulário](#formulário)
     - [Models](#models)
       - [Telefone](#telefone)
@@ -42,7 +43,20 @@
   *João Victor Oliveira Da Silva - RM: 94231*
 
 ---
+## Introdução
+No projeto da Global Solution abordamos o tema da importância que a vacina nos traz.
 
+No cenário desafiador que a humanidade enfrenta, a relevância das vacinas nunca foi tão evidente. Em um mundo interconectado, onde as fronteiras geográficas se tornam cada vez mais permeáveis, a imunização emerge como uma poderosa salvaguarda contra ameaças invisíveis que podem se disseminar rapidamente, impactando não apenas indivíduos, mas comunidades inteiras. Este projeto se propõe a lançar luz sobre a importância crucial de se tomar todas as vacinas disponíveis, destacando não apenas os benefícios individuais, mas também os impactos positivos que reverberam em escala global.
+
+Ao longo da história, as vacinas têm desempenhado um papel fundamental na prevenção de doenças infecciosas, mitigando a disseminação de agentes patogênicos e, em alguns casos, erradicando-os por completo. No entanto, mesmo diante desses avanços notáveis, persistem desafios contemporâneos que exigem uma compreensão renovada da importância da vacinação. À medida que testemunhamos a rápida evolução de patógenos, como ficou evidente recentemente, a proteção oferecida pelas vacinas torna-se um pilar essencial na construção de comunidades resilientes e saudáveis.
+
+Além do impacto direto na saúde, as vacinas desempenham um papel vital na preservação dos sistemas de saúde. A prevenção de doenças reduz a carga sobre os recursos médicos, permitindo que sejam direcionados para outras áreas críticas. Neste contexto, a conscientização sobre a importância da imunização não é apenas uma questão individual, mas uma responsabilidade coletiva para sustentar sistemas de saúde robustos capazes de enfrentar os desafios presentes e futuros.
+
+Ao explorar este projeto, convidamos você a refletir sobre a responsabilidade que cada um de nós carrega na proteção de si mesmo, de seus entes queridos e da comunidade global. A jornada pela saúde começa com um passo fundamental: a decisão informada de receber todas as vacinas recomendadas. Vamos juntos desvendar a trama intricada da imunização, reconhecendo-a como uma ferramenta indispensável para a construção de um futuro mais saudável e resistente.
+
+Com isso tudo nós deselvolvemos esse projeto com a ênfase em proteger, e como já explicado a importância da vacina, fizemos um controle de vacinas, onde é possível cadastrar um usuário que para ele temos um formulário de vacinas onde ele preencherá com as vacinas que foram tomadas. Com base em sua idade e as vacinas que deveriam ser tomadas durante sua vida até esse momento, mostraremos se há pendência, e se houver quais são elas.
+
+---
 # Formulário
   
 ## Models
