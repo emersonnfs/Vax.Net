@@ -27,6 +27,8 @@
       - [Status Vacina View](#status-vacina-view)
         - [Formulário](#formulário)
         - [Pendentes](#pendentes)
+      - [Home](#home-view)
+        - [Index](#index-home)
 
 # Descrição
 ## Integrantes
@@ -258,33 +260,40 @@ Para a StatusVacinaController nós implementamos a classe Controller do Microsof
 ### Usuário View
 #### Form
 No _Form é feito um escopo do formulário preenchido com os dados do Usuário que vai ser utilizado tanto para Cadastrar os dados do Usuário, como para Editar os dados do Usuário.
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/439ebc72-c3a6-4b79-bae9-45b25edd5370)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/0247215d-18f3-42c7-a889-4ab38fc9dd13)
 
 ---
 #### Cadastrar
 Na View Cadastrar, se tem um form que é utilizado o asp-action para chamar o método Cadastrar da Controller, e é passado o método POST, tem o _Form que são os campos do formulário, além disso tem dois botões um de listar usuários e outro de cadastrar.
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/9f679bfc-b2b3-497f-ab9b-3c0dce9f66af)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/4b775d9c-6af6-43c7-bdad-9f3a80acd632)
 
 ---
 #### Editar
 Na View Editar, é muito similar ao de Cadastrar, ele tem um form que é utilizado o asp-action para chamar o método Editar da Controller, e é passado o método POST, tem o _Form que são os campos do formulário, além disso tem dois botões um de cancerlar que retorna para a listagem e o outro de editar que atualiza os dados do Usuário.
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/c13c893d-5c9c-42bc-9765-f692ec26569d)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/5a0fb6f3-97a8-41db-abbb-9d5023d52ad2)
 
 ---
 #### Index
 No Index ele recebe os dados do método Index, exibe eles dentro de uma tabela, onde cada linha é um Usuário diferente, e tem 4 botões , o de Editar que chama a View Editar do Usuário, o de Remover que quando acionado abre um modal de confirmação, se confirmado chama o método Remover da Controller, o Ver Formulário que chama a View do StausVacina chamado Formulario e chama o Formulário da Controller da StatusVacina e o Vacina Pendentes que chama a View Pendentes do StatusVacina e chama o método Pendentes do Controller da StatusVacina.
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/721db2ca-0ec2-4258-b54e-d2c71636897b)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/68d7e37d-b722-4521-b2ee-3e5762659347)
 
 ---
 ### Status Vacina View
 #### Formulário
 No Formulario, ele recebe os dados do método Formulário, que com ele é utilizado para exibir de uma forma bem visual onde o para cada vacina que aparece tem um checkbox que pode se marcado ou desmarcado se caso a pessoa tenha ou não tomado essa Vacina, é utilizado o JQuery para isso, tem 2 botões no fim da página de cancelar, que retorna para o Index do Usuário, e o de atualizar, que atualiza todos os dados do StatusVacina conforme a marcação do checkbox, e ele faz isso chamando o método AtualizarStatus da Controller, e passa as informações via AJAX.
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/04e3eb57-41aa-4d4b-97cc-3da9fdd7ba19)
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/5899add0-82f1-459a-9524-6cf4f226938c)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/9754e36d-ed1c-4a82-aa4c-419f44984416)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/0e74ab33-4c08-4c69-a03b-405fa07ae35c)
 
 ---
 #### Pendentes
 No Pendentes, ele vai receber uma lista de string's, que é recebida do método Pendentes da Controller, a lista é exibida e tem um botão de voltar que redireciona para o Index do Usuário.
-![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/1ca490ad-cf6e-4458-adc7-84440c1c7aa7)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/b78f4736-4a43-4243-8c55-0fdbf99c22f8)
+
+---
+### Home View
+#### Index Home
+No Index do Home temos 2 botões que direcionam para o Cadastrar Usuário e para o Index do Usuário, além de uma breve descrição do tema do projeto.
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/0c6454df-79a9-4dd1-84b5-7887d14cc929)
+![image](https://github.com/emersonnfs/Vax.Net/assets/101301360/210fae07-3d03-4147-97fd-f22d5fb9409a)
 
 ---
